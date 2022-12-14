@@ -22,7 +22,7 @@ Download BepInEx from https://github.com/BepInEx/BepInEx/releases/download/v5.4.
 ## Mod Setup
 * Download the InvertMouseWheel.zip.  
     * If on Nexumods.com, download from the Files tab.
-    * Otherwise, download from https://github.com/NBKRedSpy/InvertMouseWheel/releases/
+    * Otherwise, download from https://github.com/NBKRedSpy/CardSurvival-InvertMouseWheel/releases
 
 * Extract the contents of the zip file into the ```BepInEx/plugins``` folder.
 
