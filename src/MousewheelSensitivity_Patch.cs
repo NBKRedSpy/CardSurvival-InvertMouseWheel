@@ -28,10 +28,10 @@ namespace InvertMouseWheel
             MethodInfo horizontalPositionGetProperty = AccessTools.PropertyGetter(typeof(UnityEngine.UI.ScrollRect), 
                 nameof(UnityEngine.UI.ScrollRect.horizontalNormalizedPosition));
 
-            MethodInfo GetAxisMethod = AccessTools.Method(typeof(UnityEngine.Input), nameof(UnityEngine.Input.GetAxis),
+            MethodInfo getAxisMethod = AccessTools.Method(typeof(UnityEngine.Input), nameof(UnityEngine.Input.GetAxis),
                 new[] { typeof(string) });
 
-            FieldInfo SensitivityMultiplierField = AccessTools.Field(typeof(MouseWheelSensitivity), nameof(MouseWheelSensitivity.SensitivityMultiplier));
+            FieldInfo sensitivityMultiplierField = AccessTools.Field(typeof(MouseWheelSensitivity), nameof(MouseWheelSensitivity.SensitivityMultiplier));
 
 
             //--- Code modification
@@ -39,18 +39,18 @@ namespace InvertMouseWheel
                 .MatchForward(true, new CodeMatch(OpCodes.Callvirt, horizontalPositionGetProperty))
                 .ThrowIfNotMatch("Did not find horizontal scrollbar section")
 
-                .MatchForward(true, new CodeMatch(OpCodes.Call, GetAxisMethod))
+                .MatchForward(true, new CodeMatch(OpCodes.Call, getAxisMethod))
                 .ThrowIfNotMatch("Did not find first GetAxis Call")
                 .Advance(1)
                 .Insert(multiplyNegativeInstructions)
 
-                .MatchForward(true, new CodeMatch(OpCodes.Call, GetAxisMethod))
-                .ThrowIfNotMatch("Did not find first Second Call")
+                .MatchForward(true, new CodeMatch(OpCodes.Call, getAxisMethod))
+                .ThrowIfNotMatch("Did not find second GetAxis Call")
                 .Advance(1)
                 .Insert(multiplyNegativeInstructions)
 
                 .MatchForward(true,
-                    new CodeMatch(OpCodes.Ldfld, SensitivityMultiplierField),
+                    new CodeMatch(OpCodes.Ldfld, sensitivityMultiplierField),
                     new CodeMatch(OpCodes.Mul)
                     )
                 .ThrowIfNotMatch("Did not find first Sensitivity Multiplier")
@@ -58,7 +58,7 @@ namespace InvertMouseWheel
                 .Insert(multiplyNegativeInstructions)
 
                 .MatchForward(true,
-                    new CodeMatch(OpCodes.Ldfld, SensitivityMultiplierField),
+                    new CodeMatch(OpCodes.Ldfld, sensitivityMultiplierField),
                     new CodeMatch(OpCodes.Mul)
                     )
                 .ThrowIfNotMatch("Did not find second Sensitivity Multiplier")
