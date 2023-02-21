@@ -3,6 +3,11 @@
 Changes the horizontal scroll bars to use "mouse wheel down" to move right and "mouse wheel up" to move left.
 
 # Installation 
+This section describes how to manually install the mod.
+
+If using the Vortex mod manager from NexusMods, these steps are not needed.  
+
+## Overview
 This mod requires the BepInEx mod loader.
 
 ## BepInEx Setup
