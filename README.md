@@ -1,3 +1,6 @@
+# Obsolete
+Card Survival 1.04i now includes an option to invert the mouse.  This mod is obsolete.
+
 # Invert Horizontal Mouse Wheel
 
 Changes the horizontal scroll bars to use "mouse wheel down" to move right and "mouse wheel up" to move left.
